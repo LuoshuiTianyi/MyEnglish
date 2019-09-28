@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from random import *
+import string
 import os
 words = []
 lse = []
@@ -21,6 +22,7 @@ def Init():
     print()
     for word in words:
         print(word[0].ljust(50), word[1])
+    input()
     os.system("clear")
     lim=int(input("请输入记忆次数："))
     for i in range(0, lim):
@@ -35,14 +37,36 @@ FileInput()
 Init()
 while len(lse):
     os.system("clear")
-    print("第一轮：en -> zh  (rest : %s)\n----------------------------------------------"%len(lse))
+    print("第一轮：en -> zh  (rest : %s)"%len(lse))
     now = choice(lse)
-    print(now[0])
+    cnt = 0;
+    for i in now[1]:
+        if i not in string.printable:
+            cnt += 1;
+    print()
+    print(" ----------------------------------------------")
+    print("|                                              |")
+    print("|                                              |")
+    print("|%s|"%now[0].center(46))
+    print("|                                              |")
+    print("|                                              |")
+    print(" ----------------------------------------------")
+    print()
+    print()
     res = input("记得吗? (y/n):  ")
     print()
-    print("----------------------------------------------")
-    print("以下是它的中文意思：\n")
-    print(now[1], end="\n\n\n")
+    print("------------- 以下是它的中文意思 --------------")
+    print()
+    print()
+    print(" ----------------------------------------------")
+    print("|                                              |")
+    print("|                                              |")
+    print("|%s|"%now[1].center(46 - cnt))
+    print("|                                              |")
+    print("|                                              |")
+    print(" ----------------------------------------------")
+    print()
+    print()
     if res[0] == "y":
         res = input("真的记清楚了吗?(y/n):  ")
         if res[0] == "y":
@@ -51,10 +75,23 @@ while len(lse):
         lse.append(now)
 while len(lsz):
     os.system("clear")
-    print("第二轮：zh -> en  (rest : %s)\n----------------------------------------------"%len(lsz))
+    print("第二轮：zh -> en  (rest : %s)"%len(lsz))
+    print()
     now = choice(lsz)
-    print(now[1], "\n")
-    word = input("请输入单词:  ")
+    cnt = 0;
+    for i in now[1]:
+        if i not in string.printable:
+            cnt += 1;
+    print(" ----------------------------------------------")
+    print("|                                              |")
+    print("|                                              |")
+    print("|%s|"%now[1].center(46 - cnt))
+    print("|                                              |")
+    print("|                                              |")
+    print(" ----------------------------------------------")
+    print()
+    print()
+    word = input("请输入单词->   ")
     if word == now[0]:
         print("\nAccept!")
         input()
