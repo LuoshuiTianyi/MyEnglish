@@ -14,10 +14,10 @@ def FileInput():
     fl=open("/home/luoshuitianyi/Notebook/English/%s/%s/%s.note"%(year,month,day), "r")
     note=fl.readlines()
     n=len(note)//2
-    for i in range(0,n):
-        words.append([note[i * 2].strip("\n"), note[i * 2 + 1].strip("\n")])
-    os.system("clear")
+    global words
+    words=[[note[i * 2].strip("\n"), note[i * 2 + 1].strip("\n")] for i in range(0,n)]
 def Init():
+    os.system("clear")
     print("以下是这份笔记的内容：")
     print()
     for word in words:
@@ -98,4 +98,5 @@ while len(lsz):
         lsz.remove(now)
     else:
         print("\nWrong!")
+        print("正确单词 ->    %s"%now[0])
         input()
