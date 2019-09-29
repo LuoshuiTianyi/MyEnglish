@@ -67,9 +67,9 @@ while len(lse):
     print(" ----------------------------------------------")
     print()
     print()
-    if res[0] == "y":
+    if len(res) == 0 or res[0] == "y":
         res = input("真的记清楚了吗?(y/n):  ")
-        if res[0] == "y":
+        if len(res) == 0 or res[0] == "y":
             lse.remove(now)
     else:
         input()
