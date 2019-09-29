@@ -72,6 +72,7 @@ while len(lse):
         if res[0] == "y":
             lse.remove(now)
     else:
+        input()
         lse.append(now)
 while len(lsz):
     os.system("clear")
