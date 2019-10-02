@@ -16,11 +16,11 @@ def FileInput():
             fl=open("/home/luoshuitianyi/Notebook/English/%s/%s/%s.note"%(year,month,day), "r")
         except FileNotFoundError:
             print("没有这份笔记!")
+            input()
         else:
             break
-        finally:
-            pass
     note=fl.readlines()
+    fl.close()
     n=len(note)//2
     global words
     words=[[note[i * 2].strip(), note[i * 2 + 1].strip()] for i in range(0,n)]
@@ -31,8 +31,15 @@ def Init():
     for word in words:
         print(word[0].ljust(50), word[1])
     input()
-    os.system("clear")
-    lim=int(input("请输入记忆次数：").strip())
+    while True:
+        try:
+            os.system("clear")
+            lim=int(input("请输入记忆次数：").strip())
+        except ValueError:
+            print("请输入数字!")
+            input()
+        else:
+            break
     for i in range(0, lim):
         lse.extend(words)
         lsz.extend(words)
