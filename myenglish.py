@@ -6,16 +6,24 @@ words = []
 lse = []
 lsz = []
 def FileInput():
-    os.system("clear")
-    print("请输入笔记文件日期: (year,month,day)")
-    year=input()
-    month=input()
-    day=input()
-    fl=open("/home/luoshuitianyi/Notebook/English/%s/%s/%s.note"%(year,month,day), "r")
+    while True:
+        os.system("clear")
+        print("请输入笔记文件日期: (year,month,day)")
+        year=input()
+        month=input()
+        day=input()
+        try:
+            fl=open("/home/luoshuitianyi/Notebook/English/%s/%s/%s.note"%(year,month,day), "r")
+        except FileNotFoundError:
+            print("没有这份笔记!")
+        else:
+            break
+        finally:
+            pass
     note=fl.readlines()
     n=len(note)//2
     global words
-    words=[[note[i * 2].strip("\n"), note[i * 2 + 1].strip("\n")] for i in range(0,n)]
+    words=[[note[i * 2].strip(), note[i * 2 + 1].strip()] for i in range(0,n)]
 def Init():
     os.system("clear")
     print("以下是这份笔记的内容：")
@@ -24,7 +32,7 @@ def Init():
         print(word[0].ljust(50), word[1])
     input()
     os.system("clear")
-    lim=int(input("请输入记忆次数："))
+    lim=int(input("请输入记忆次数：").strip())
     for i in range(0, lim):
         lse.extend(words)
         lsz.extend(words)
