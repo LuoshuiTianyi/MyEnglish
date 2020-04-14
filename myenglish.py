@@ -6,19 +6,20 @@ words = []
 lse = []
 lsz = []
 def FileInput():
-    while True:
-        os.system("clear")
-        print("请输入笔记文件日期: (year,month,day)")
-        year=input()
-        month=input()
-        day=input()
-        try:
-            fl=open("/home/luoshuitianyi/Notebook/English/%s/%s/%s.note"%(year,month,day), "r")
-        except FileNotFoundError:
-            print("没有这份笔记!")
-            input()
-        else:
-            break
+#    while True:
+#        os.system("clear")
+#        print("请输入笔记文件日期: (year,month,day)")
+#        year=input()
+#        month=input()
+#        day=input()
+#        try:
+#            fl=open("/home/luoshuitianyi/Notebook/English/%s/%s/%s.note"%(year,month,day), "r")
+#        except FileNotFoundError:
+#            print("没有这份笔记!")
+#            input()
+#        else:
+#            break
+    fl = open("note", "r")
     note=fl.readlines()
     fl.close()
     n=len(note)//2
